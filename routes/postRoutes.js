@@ -1,15 +1,20 @@
-// const express = require("express");
+const express = require("express");
 
-// const postController = require("../controllers/postController");
-// const protect = require("../middleware/authMiddleware");
+const postController = require("../controllers/postController");
+const protect = require("../middleware/authMiddleware");
 
-// const router = express.Router()
+const router = express.Router();
 
-// router.route("/").get(postController.getAllPosts).post(protect, postController.createPost);
+//localhost:3000/:id
+router
+  .route("/")
+  .get(protect, postController.getAllPosts)
+  .post(protect, postController.createPost);
 
-// router.route("/:id").get(postController.getOnePost).patch(postController.updatePost).delete(postController.deletePost);
+router
+  .route("/:id")
+  .get(protect, postController.getOnePost)
+  .patch(protect, postController.updatePost)
+  .delete(protect, postController.deletePost);
 
-// module.exports = router;
-
-
-   
+module.exports = router;
